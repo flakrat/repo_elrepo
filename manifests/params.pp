@@ -10,7 +10,8 @@ class repo_elrepo::params {
 
   # There are some URL manipulations that have to happen based on exact OS type
   if $::osfamily == 'RedHat' {
-    $url = "http://164.111.161.5/repo/elrepo"
+    #$url = "http://164.111.161.5/repo/elrepo"
+    $url = "http://164.111.161.12/repo/elrepo"
     $ostype = 'el'
     $urlbit = "${ostype}${::os_maj_version}"
   }

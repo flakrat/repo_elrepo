@@ -18,7 +18,7 @@
     "manifests/extras.pp": "1311938021f125019d7e777ff2b7744b",
     "manifests/init.pp": "505c257bc97e1f71192d014ff934855d",
     "manifests/kernel.pp": "c685d48ba68097a2f20bdf89dd3447f8",
-    "manifests/params.pp": "c4c6a223d4bf766ebc34721160f5f227",
+    "manifests/params.pp": "27d00733d381742799198d2f5e37c3fb",
     "manifests/rpm_gpg_key.pp": "ff89c3bf5d55369eacc674e3985e73f4",
     "manifests/testing.pp": "7b0194bc24b01c044a4829aacef90409",
     "spec/spec.opts": "a600ded995d948e393fbe2320ba8e51c",
