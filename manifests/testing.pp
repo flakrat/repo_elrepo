@@ -8,8 +8,8 @@ class repo_elrepo::testing inherits repo_elrepo {
   }
 
   yumrepo { 'elrepo-testing':
-    baseurl  => "${repourl}/testing/${::ostype}${::urlbit}/${::architecture}",
-    descr    => "ELRepo.org Community Enterprise Linux Testing Repository - ${::ostype}${::urlbit} - ${::architecture}",
+    baseurl  => "${repourl}/testing/${ostype}${urlbit}/${::architecture}",
+    descr    => "ELRepo.org Community Enterprise Linux Testing Repository - ${ostype}${urlbit} - ${::architecture}",
     enabled  => "${enabled}",
     gpgcheck => '1',
     gpgkey   => "file:///etc/pki/rpm-gpg/RPM-GPG-KEY-elrepo.org",

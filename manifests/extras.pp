@@ -8,8 +8,8 @@ class repo_elrepo::extras inherits repo_elrepo {
   }
 
   yumrepo { 'elrepo-extras':
-    baseurl  => "${repourl}/extras/${::ostype}${::urlbit}/${::architecture}",
-    descr    => "ELRepo.org Community Enterprise Linux Extras Repository - ${::ostype}${::urlbit} - ${::architecture}",
+    baseurl  => "${repourl}/extras/${ostype}${urlbit}/${::architecture}",
+    descr    => "ELRepo.org Community Enterprise Linux Extras Repository - ${ostype}${urlbit} - ${::architecture}",
     enabled  => "${enabled}",
     gpgcheck => '1',
     gpgkey   => "file:///etc/pki/rpm-gpg/RPM-GPG-KEY-elrepo.org",

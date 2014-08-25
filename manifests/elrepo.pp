@@ -9,8 +9,8 @@ class repo_elrepo::elrepo inherits repo_elrepo {
   }
 
   yumrepo { 'elrepo':
-    baseurl  => "${repourl}/elrepo/${::ostype}${::urlbit}/${::architecture}",
-    descr    => "ELRepo.org Community Enterprise Linux Repository - ${::ostype}${::urlbit} - ${::architecture}",
+    baseurl  => "${repourl}/elrepo/${ostype}${urlbit}/${::architecture}",
+    descr    => "ELRepo.org Community Enterprise Linux Repository - ${ostype}${urlbit} - ${::architecture}",
     enabled  => "${enabled}",
     gpgcheck => '1',
     gpgkey   => "file:///etc/pki/rpm-gpg/RPM-GPG-KEY-elrepo.org",

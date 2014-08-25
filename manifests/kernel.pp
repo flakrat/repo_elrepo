@@ -8,8 +8,8 @@ class repo_elrepo::kernel inherits repo_elrepo {
   }
 
   yumrepo { 'elrepo-kernel':
-    baseurl  => "${repourl}/kernel/${::ostype}${::urlbit}/${::architecture}",
-    descr    => "ELRepo.org Community Enterprise Linux Kernel Repository - ${::ostype}${::urlbit} - ${::architecture}",
+    baseurl  => "${repourl}/kernel/${ostype}${urlbit}/${::architecture}",
+    descr    => "ELRepo.org Community Enterprise Linux Kernel Repository - ${ostype}${urlbit} - ${::architecture}",
     enabled  => "${enabled}",
     gpgcheck => '1',
     gpgkey   => "file:///etc/pki/rpm-gpg/RPM-GPG-KEY-elrepo.org",
