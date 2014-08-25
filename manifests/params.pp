@@ -1,17 +1,16 @@
-# Optional parameters in setting up ELRepo Yum repository
+# Optional parameters in setting up CentOS Yum repository
 class repo_elrepo::params {
-  # Setting to 'absent' will fall back to the yum.conf
-  # Setting proxy here will be the default for all repos.
-  #
-  #  If you wish to set a proxy for an individual set of repos,
-  #   you can declare $proxy in that class, and should scope to
-  #   the most specific declaration of proxy.
-  $proxy = 'absent'
-
-  # There are some URL manipulations that have to happen based on exact OS type
-  if $::osfamily == 'RedHat' {
-    $url = "http://files.uabgrid.uab.edu/repo/elrepo"
-    $ostype = 'el'
-    $urlbit = "${ostype}${::os_maj_version}"
-  }
+  #$repourl = $::lsbmajdistrelease ? {
+  #  5         => 'mirrorlist=http://mirrors.fedoraproject.org/mirrorlist?repo=elrepo-5&arch=$basearch',
+  #  6         => 'mirrorlist=https://mirrors.fedoraproject.org/metalink?repo=elrepo-6&arch=$basearch',
+  #  7         => 'mirrorlist=https://mirrors.fedoraproject.org/metalink?repo=elrepo-7&arch=$basearch',
+  #  default   => undef,
+  #}
+  $enable_elrepo             = true
+  $enable_extras             = false
+  $enable_kernel             = false
+  $enable_testing            = false
+  $ostype                    = 'el'
+  $urlbit                    = "${::operatingsystemmajrelease}"
+  $repourl                   = "http://elrepo.org/linux"
 }

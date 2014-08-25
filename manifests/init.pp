@@ -1,33 +1,64 @@
-# Class: repo_elrepo
+# == Class: repo_elrepo
 #
-# This module manages repo_elrepo
+# Configure the CentOS 5 or 6 repositories and import GPG keys
 #
-# Parameters: none
+# === Parameters:
 #
-# Actions:
+# $repourl::                       The base repo URL, if not specified defaults to the
+#                                  elrepo Mirror
+#                                  
+# $enable_elrepo::                   Enable the elrepo Repo
+#                                  type:boolean
 #
-# Requires: see Modulefile
+# $enable_debuginfo::              Enable the elrepo Debuginfo Repo
+#                                  type:boolean
 #
-# Sample Usage: include repo_elrepo
+# $enable_source::                 Enable the elrepo source Repo
+#                                  type:boolean
+#
+# $enable_testing::                Enable the elrepo testing Repo
+#                                  type:boolean
+#
+# $enable_testing_debuginfo::      Enable the elrepo testing debuginfo Repo
+#                                  type:boolean
+#
+# $enable_testing_source::         Enable the elrepo testing source Repo
+#                                  type:boolean
+#
+# === Usage:
+# * Simple usage:
+#
+#  include repo_elrepo
+#
+# * Advanced usage:
+#
+#   class {'repo_elrepo':
+#     repourl       => 'http://myrepo/elrepo',
+#     enable_testing    => true,
+#   }
+#
+# * Alternate usage via hiera YAML:
+#
+#   repo_elrepo::repourl: 'http://myrepo/elrepo'
+#   repo_elrepo::enable_testing: true
 #
 class repo_elrepo (
-  $enable_testing = false,
-  $enable_kernel = false,
-  $enable_extras = false,
-) inherits repo_elrepo::params {
+    $repourl                       = $repo_elrepo::params::repourl,
+    $enable_elrepo                 = $repo_elrepo::params::enable_elrepo,
+    $enable_extras                 = $repo_elrepo::params::enable_extras,
+    $enable_kernel                 = $repo_elrepo::params::enable_kernel,
+    $enable_testing                = $repo_elrepo::params::enable_testing,
+  ) inherits repo_elrepo::params {
 
+  validate_string($repourl)
+  validate_bool($enable_elrepo)
+  validate_bool($enable_extras)
+  validate_bool($enable_kernel)
+  validate_bool($enable_testing)
+  
   if $::osfamily == 'RedHat' {
     include repo_elrepo::elrepo
-    class { "repo_elrepo::testing":
-      enable_testing   => $enable_testing,
-    }
-    class { "repo_elrepo::kernel":
-      enable_kernel   => $enable_kernel,
-    }
-    class { "repo_elrepo::extras":
-      enable_extras   => $enable_extras,
-    }
-
+    
     repo_elrepo::rpm_gpg_key{ "RPM-GPG-KEY-elrepo.org":
       path => "/etc/pki/rpm-gpg/RPM-GPG-KEY-elrepo.org",
     }
@@ -41,7 +72,7 @@ class repo_elrepo (
     }
 
   } else {
-      notice ("Your operating system ${::operatingsystem} is not supported for ELRepo repositories")
+      notice ("Your operating system ${::operatingsystem} does not need elrepo repositories")
   }
 
 }

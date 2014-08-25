@@ -1,20 +1,19 @@
-class repo_elrepo::extras  (
-  $enable_extras = false,
-) inherits repo_elrepo::params {
+# extras.pp
+class repo_elrepo::extras inherits repo_elrepo {
 
-  if $enable_extras {
+  if $repo_elrepo::enable_extras {
     $enabled = 1
   } else {
     $enabled = 0
   }
-  
+
   yumrepo { 'elrepo-extras':
-    baseurl  => "${url}/extras/${urlbit}/${::architecture}",
-    descr    => "ELRepo.org Community Enterprise Linux Extras Repository - el${::os_maj_version} - ${::architecture}",
-    enabled  => '0',
+    baseurl  => "${repourl}/extras/${::ostype}${::urlbit}/${::architecture}",
+    descr    => "ELRepo.org Community Enterprise Linux Extras Repository - ${::ostype}${::urlbit} - ${::architecture}",
+    enabled  => "${enabled}",
     gpgcheck => '1',
     gpgkey   => "file:///etc/pki/rpm-gpg/RPM-GPG-KEY-elrepo.org",
-    priority => '11',
+    protect  => '0',
   }
 
 }
