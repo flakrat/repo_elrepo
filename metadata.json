@@ -8,7 +8,17 @@
   ],
   "license": "Apache License, Version 2.0",
   "name": "flakrat-repo_elrepo",
-  "operatingsystem_support": [],
+  "operatingsystem_support": [
+    {
+      "operatingsystem": "CentOS",
+    },
+    {
+      "operatingsystem": "OracleLinux",
+    },
+    {
+      "operatingsystem": "RedHat",
+    },
+  ],
   "project_page": "https://github.com/flakrat/repo_elrepo",
   "requirements": [],
   "source": "https://github.com/flakrat/repo_elrepo.git",
